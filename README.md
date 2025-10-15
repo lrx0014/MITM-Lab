@@ -3,6 +3,23 @@ Lab session: the Man-in-the-Middle Attacks
 
 > **⚠️ Disclaimer:** This lab runs on a completely isolated virtual network to ensure ethical safety. Do not connect the lab environment to production or public networks.
 
+## TL;DR
+
+- On the **server node** (`192.168.99.2`):
+  - Pull the repo and bootstrap services:
+    ```bash
+    git clone https://github.com/lrx0014/MITM-Lab.git
+    cd MITM-Lab
+    ./init_env.sh
+    ```
+  - Launch the victim web app:
+    ```bash
+    ./start.sh
+    ```
+- On the **victim workstation** (`192.168.99.1`):
+  - Set DNS to `192.168.99.2` (NetworkManager → IPv4 → DNS).
+  - Browse to `http://victim.com/` to hit the simulated site.
+
 ## Lab Topology
 
 The exercise uses a three-node layout:
