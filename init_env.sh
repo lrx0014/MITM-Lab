@@ -83,6 +83,33 @@ EOF
     echo "[+] dnsmasq reloaded with lab DNS entry"
 }
 
+configure_systemd_resolved() {
+    local server_ip="$1"
+    local resolved_conf="/etc/systemd/resolved.conf"
+
+    echo "[+] Configuring systemd-resolved to use dnsmasq on $server_ip"
+
+    if [ ! -f "$resolved_conf" ]; then
+        echo "[!] systemd-resolved configuration not found at $resolved_conf" >&2
+        return
+    fi
+
+    $SUDO sed -i \
+        -e "s/^#\?DNS=.*/DNS=$server_ip/" \
+        -e "s/^#\?Domains=.*/Domains=~victim.com/" \
+        "$resolved_conf"
+
+    if ! grep -q "^DNS=$server_ip" "$resolved_conf"; then
+        echo "DNS=$server_ip" | $SUDO tee -a "$resolved_conf" >/dev/null
+    fi
+    if ! grep -q "^Domains=~victim.com" "$resolved_conf"; then
+        echo "Domains=~victim.com" | $SUDO tee -a "$resolved_conf" >/dev/null
+    fi
+
+    $SUDO systemctl restart systemd-resolved
+    echo "[+] systemd-resolved now points to dnsmasq"
+}
+
 main() {
     ensure_packages nginx dnsmasq
 
@@ -96,12 +123,14 @@ main() {
 
     configure_nginx
     configure_dnsmasq "$ip"
+    configure_systemd_resolved "$ip"
 
     cat <<EOF
 
 [i] Environment ready.
     - Nginx proxies victim.com to the Flask app on localhost.
     - dnsmasq resolves victim.com to $ip.
+    - systemd-resolved on this server trusts dnsmasq.
     - Point victim machines' DNS to $ip and start the Flask app on port 8000.
 EOF
 }
