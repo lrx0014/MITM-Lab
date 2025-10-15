@@ -20,6 +20,9 @@ Lab session: the Man-in-the-Middle Attacks
   - Set DNS to `192.168.99.2` (NetworkManager → IPv4 → DNS).
   - Browse to `http://victim.com/` to hit the simulated site.
 
+- Attacker's guide:
+  - [Task-1: MITM attack on HTTP](./attack_guide/MITM_HTTP.md)
+
 ## Lab Topology
 
 The exercise uses a three-node layout:

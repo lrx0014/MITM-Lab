@@ -1,4 +1,9 @@
+## Task 1: MITM Attack on HTTP
+
+Execute the commands below on the attacker's VM (Kali Linux)
+
 ```bash
+# check these tools are installed
 which mitmproxy
 which arpspoof
 
