@@ -71,8 +71,12 @@ configure_dnsmasq() {
     local server_ip="$1"
     local dns_conf="/etc/dnsmasq.d/victim.conf"
 
-    echo "[+] Configuring dnsmasq to resolve victim.com to $server_ip"
-    echo "address=/victim.com/$server_ip" | $SUDO tee "$dns_conf" >/dev/null
+    echo "[+] Configuring dnsmasq to resolve victim.com to $server_ip and bind to $server_ip"
+    cat <<EOF | $SUDO tee "$dns_conf" >/dev/null
+listen-address=$server_ip
+bind-interfaces
+address=/victim.com/$server_ip
+EOF
 
     $SUDO systemctl enable dnsmasq
     $SUDO systemctl restart dnsmasq

@@ -71,9 +71,13 @@ If you want a lightweight DNS service that resolves `victim.com` to your lab pro
 
 ```bash
 sudo apt install dnsmasq
-echo "address=/victim.com/192.168.99.2" | sudo tee /etc/dnsmasq.d/victim.conf
+sudo tee /etc/dnsmasq.d/victim.conf <<'EOF'
+listen-address=192.168.99.2
+bind-interfaces
+address=/victim.com/192.168.99.2
+EOF
 sudo systemctl restart dnsmasq
 sudo systemctl enable dnsmasq
 ```
 
-Point victim systems to use `192.168.99.2` as their DNS server. On Ubuntu Desktop, edit the connection in NetworkManager (IPv4 tab → set DNS to `192.168.99.2`); on the server node itself, keep `/etc/systemd/resolved.conf` pointing to the local resolver with `DNS=127.0.0.1` and `Domains=~victim.com`, then run `sudo systemctl restart systemd-resolved`. With dnsmasq active, queries for `victim.com` from the victim workstation will resolve to `192.168.99.2`, keeping all traffic inside your MITM lab.
+Point victim systems to use `192.168.99.2` as their DNS server. On Ubuntu Desktop, edit the connection in NetworkManager (IPv4 tab → set DNS to `192.168.99.2`); on the server node itself, update `/etc/systemd/resolved.conf` with `DNS=192.168.99.2` and `Domains=~victim.com`, then run `sudo systemctl restart systemd-resolved`. With dnsmasq active and bound to `192.168.99.2`, queries for `victim.com` from the victim workstation will resolve to the server, keeping all traffic inside your MITM lab.
