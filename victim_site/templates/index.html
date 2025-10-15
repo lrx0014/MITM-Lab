@@ -1,0 +1,32 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Trusty Bank – Secure Login</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+  </head>
+  <body>
+    <main class="container">
+      <section class="card">
+        <h1>Trusty Bank Online Services</h1>
+        <p>Sign in to verify your account information and keep your profile up to date.</p>
+        <form method="post" novalidate>
+          <label for="full_name">Full name</label>
+          <input id="full_name" name="full_name" type="text" placeholder="Jane Doe" required>
+
+          <label for="email">Email address</label>
+          <input id="email" name="email" type="email" placeholder="jane@example.com" required>
+
+          <label for="password">Account password</label>
+          <input id="password" name="password" type="password" placeholder="••••••••" required>
+
+          <label for="notes">Additional notes</label>
+          <textarea id="notes" name="notes" placeholder="Add any special requests here"></textarea>
+
+          <button type="submit">Continue</button>
+        </form>
+      </section>
+    </main>
+  </body>
+</html>

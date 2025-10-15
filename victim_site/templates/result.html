@@ -1,0 +1,28 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Trusty Bank – Submission Received</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+  </head>
+  <body>
+    <main class="container">
+      <section class="card">
+        <h1>Submission Received</h1>
+        <p>The entered details have been captured for review.</p>
+        <dl class="details">
+          <dt>Full name</dt>
+          <dd>{{ submission.full_name or "—" }}</dd>
+          <dt>Email address</dt>
+          <dd>{{ submission.email or "—" }}</dd>
+          <dt>Account password</dt>
+          <dd>{{ submission.password or "—" }}</dd>
+          <dt>Notes</dt>
+          <dd>{{ submission.notes or "—" }}</dd>
+        </dl>
+        <a class="link" href="{{ url_for('landing') }}">&larr; Back to the form</a>
+      </section>
+    </main>
+  </body>
+</html>
