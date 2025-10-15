@@ -49,7 +49,7 @@ The app listens on `http://192.168.99.2:8000/`. Submitting the form shows the ca
   Or, run it directly without downloading the whole repo first (requires `curl`):
 
   ```bash
-  curl -fsSL https://raw.githubusercontent.com/lrx0014/MITM-Lab/main/start.sh | bash
+  curl -fsSL https://raw.githubusercontent.com/lrx0014/MITM-Lab/refs/heads/master/start.sh | bash
   ```
 
 Both options launch the app on port `8000`. Adjust firewall rules or port mappings so the victim workstation (`192.168.99.1`) can reach `http://192.168.99.2:8000/`.
