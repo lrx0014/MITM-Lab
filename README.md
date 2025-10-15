@@ -30,6 +30,30 @@ python app.py
 
 The app listens on `http://192.168.99.2:8000/`. Submitting the form shows the captured information, mimicking the data that an attacker could intercept.
 
+### Quick start (automated)
+
+- **Using Docker**
+
+  ```bash
+  docker build -t mitm-lab:victim-site .
+  docker run --rm -p 8000:8000 mitm-lab:victim-site
+  ```
+
+- **Using `start.sh`**
+
+  ```bash
+  chmod +x start.sh
+  ./start.sh
+  ```
+
+  Or, run it directly without downloading the whole repo first (requires `curl`):
+
+  ```bash
+  curl -fsSL https://raw.githubusercontent.com/lrx0014/MITM-Lab/main/start.sh | bash
+  ```
+
+Both options launch the app on port `8000`. Adjust firewall rules or port mappings so the victim workstation (`192.168.99.1`) can reach `http://192.168.99.2:8000/`.
+
 ### Reverse proxy with Nginx
 
 Use the provided `nginx_conf/nginx.conf` to forward traffic for `victim.com` to the Flask app:
