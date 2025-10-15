@@ -19,10 +19,10 @@ The app listens on `http://127.0.0.1:8000/`. Submitting the form shows the captu
 
 ### Reverse proxy with Nginx
 
-Use the provided `victim_site/nginx.conf` to forward traffic for `victim.com` to the Flask app:
+Use the provided `nginx_conf/nginx.conf` to forward traffic for `victim.com` to the Flask app:
 
 ```bash
-sudo cp victim_site/nginx.conf /etc/nginx/conf.d/victim.conf
+sudo cp nginx_conf/nginx.conf /etc/nginx/conf.d/victim.conf
 sudo nginx -t
 sudo systemctl reload nginx
 ```
