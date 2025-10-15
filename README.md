@@ -15,22 +15,13 @@ The exercise uses a three-node layout:
 
 This repository includes a simple Python + HTML victim site that accepts form submissions. It is meant to act as the target page during Man-in-the-Middle scenarios.
 
-### Quick start
-
-```bash
-sudo apt update
-sudo apt install python3-venv python3-pip
-
-cd victim_site
-python3 -m venv .venv
-source .venv/bin/activate
-pip install -r requirements.txt
-python app.py
-```
-
-The app listens on `http://192.168.99.2:8000/`. Submitting the form shows the captured information, mimicking the data that an attacker could intercept.
-
 ### Quick start (automated)
+
+- **First of all, clone this repo**
+
+  ```bash
+  git clone https://github.com/lrx0014/MITM-Lab.git
+  ```
 
 - **Using Docker**
 
@@ -46,12 +37,10 @@ The app listens on `http://192.168.99.2:8000/`. Submitting the form shows the ca
   ./start.sh
   ```
 
-  Or, run it directly without downloading the whole repo first (requires `curl`):
+Both options launch the app on port `8000`. Adjust firewall rules or port mappings so the victim workstation (`192.168.99.1`) can reach `http://192.168.99.2:8000/`.
 
-  ```bash
-  curl -fsSL https://raw.githubusercontent.com/lrx0014/MITM-Lab/refs/heads/master/start.sh | bash
-  ```
 
+### Reverse proxy with Nginx (Automated Way)
 - **Provision server services with `init_env.sh`** (run on the server node)
 
   ```bash
@@ -61,9 +50,8 @@ The app listens on `http://192.168.99.2:8000/`. Submitting the form shows the ca
 
   The script installs Nginx and dnsmasq if needed, copies the lab proxy configuration, and points `victim.com` to the server's detected IP address. Set `SERVER_IP=<your-server-ip>` if auto-detection picks the wrong interface.
 
-Both options launch the app on port `8000`. Adjust firewall rules or port mappings so the victim workstation (`192.168.99.1`) can reach `http://192.168.99.2:8000/`.
 
-### Reverse proxy with Nginx
+### Reverse proxy with Nginx (Manual Way)
 
 Use the provided `nginx_conf/nginx.conf` to forward traffic for `victim.com` to the Flask app:
 
