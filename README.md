@@ -52,6 +52,15 @@ The app listens on `http://192.168.99.2:8000/`. Submitting the form shows the ca
   curl -fsSL https://raw.githubusercontent.com/lrx0014/MITM-Lab/refs/heads/master/start.sh | bash
   ```
 
+- **Provision server services with `init_env.sh`** (run on the server node)
+
+  ```bash
+  chmod +x init_env.sh
+  ./init_env.sh
+  ```
+
+  The script installs Nginx and dnsmasq if needed, copies the lab proxy configuration, and points `victim.com` to the server's detected IP address. Set `SERVER_IP=<your-server-ip>` if auto-detection picks the wrong interface.
+
 Both options launch the app on port `8000`. Adjust firewall rules or port mappings so the victim workstation (`192.168.99.1`) can reach `http://192.168.99.2:8000/`.
 
 ### Reverse proxy with Nginx
