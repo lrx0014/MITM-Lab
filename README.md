@@ -3,6 +3,14 @@ Lab session: the Man-in-the-Middle Attacks
 
 > **⚠️ Disclaimer:** This lab runs on a completely isolated virtual network to ensure ethical safety. Do not connect the lab environment to production or public networks.
 
+## Lab Topology
+
+The exercise uses a three-node layout:
+
+- **Victim workstation** (`192.168.99.1`): Ubuntu Desktop VM with a web browser. It resolves `victim.com` through the lab DNS and browses the simulated banking page.
+- **Server node** (`192.168.99.2`): Ubuntu Server VM hosting the Flask victim application, Nginx reverse proxy, and dnsmasq DNS service. This system represents the legitimate infrastructure targeted in the MITM scenario.
+- **Attacker node** (`192.168.99.3`): Kali Linux VM positioned on the same network segment, able to intercept or modify traffic between the victim and server.
+
 ## TL;DR
 
 - On the **server node** (`192.168.99.2`):
@@ -22,14 +30,6 @@ Lab session: the Man-in-the-Middle Attacks
 
 - Attacker's guide:
   - [Task-1: MITM attack on HTTP](./attack_guide/MITM_HTTP.md)
-
-## Lab Topology
-
-The exercise uses a three-node layout:
-
-- **Victim workstation** (`192.168.99.1`): Ubuntu Desktop VM with a web browser. It resolves `victim.com` through the lab DNS and browses the simulated banking page.
-- **Server node** (`192.168.99.2`): Ubuntu Server VM hosting the Flask victim application, Nginx reverse proxy, and dnsmasq DNS service. This system represents the legitimate infrastructure targeted in the MITM scenario.
-- **Attacker node** (`192.168.99.3`): Kali Linux VM positioned on the same network segment, able to intercept or modify traffic between the victim and server.
 
 ## Simulated Victim Web App
 
