@@ -2,9 +2,8 @@
 set -euo pipefail
 
 REPO_URL="https://github.com/lrx0014/MITM-Lab.git"
-REPO_DIR="${REPO_DIR:-MITM-Lab}"
-APP_DIR="$REPO_DIR/victim_site"
-REPO_NGINX_CONF="$REPO_DIR/nginx_conf/nginx.conf"
+APP_DIR="victim_site"
+REPO_NGINX_CONF="./nginx_conf/nginx.conf"
 
 if command -v sudo >/dev/null 2>&1; then
     SUDO="sudo"
