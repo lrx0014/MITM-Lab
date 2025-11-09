@@ -83,9 +83,6 @@ start_app() {
 
     # shellcheck source=/dev/null
     source .venv/bin/activate
-    echo "[+] Installing Python dependencies"
-    pip install --upgrade pip
-    pip install -r requirements.txt
 
     echo "[+] Starting victim application on port 8000"
     exec python app.py
