@@ -52,7 +52,7 @@ sudo arpspoof -i eth0 -t <server_ip> <user_ip>
 sudo arpspoof -i eth0 -t <user_ip> <server_ip>
 ```
 
-And then, on the victim VM, open the browser and go to:
+And then, on the victim user VM (Alice), open the browser and go to:
 - http://victim.com (HTTP)
 
 fill out the simulated login form and submit it, then get back to the attacker's VM (kali linux), if everything is correct, you should be able to capture the login information.
