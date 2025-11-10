@@ -13,9 +13,13 @@ The exercise uses a three-node layout:
 
 ## Lab Guide
 
-Download the Virtual Machine images for this lab: [Download Here](https://drive.google.com/drive/folders/1qfoB2r840WXnAG2EsF0gyGfLKoWyF8mM?usp=sharing)
+Download the Virtual Machine images for this lab: **[Download Here](https://drive.google.com/drive/folders/1qfoB2r840WXnAG2EsF0gyGfLKoWyF8mM?usp=sharing)**
 
-You can import them into your VMWare or VirtualBox, and then:
+You can import them into your VMWare or VirtualBox
+
+> **⚠️ when importing each image, please set their virtual network adapters to **Host-Only** mode to isolate them from the public network.
+
+and then, you can power up these VMs to start the lab environment.
 
 - On the **server node (Bob)**:
   - Launch the victim web app:
