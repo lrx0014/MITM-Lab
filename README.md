@@ -17,7 +17,7 @@ Download the Virtual Machine images for this lab: **[Download Here](https://driv
 
 You can import them into your VMWare or VirtualBox (vmware is recommended because these images are exported from vmware workstation)
 
-> **⚠️ when importing each image, please set their virtual network adapters to **Host-Only** mode to isolate them from the public network.
+> **⚠️ WARN** when importing each image, please set their virtual network adapters to **Host-Only** mode to isolate them from the public network.
 
 and then, you can power up these VMs to start the lab environment.
 
