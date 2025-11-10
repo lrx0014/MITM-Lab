@@ -21,6 +21,7 @@ You can import them into your VMWare or VirtualBox, and then:
   - Launch the victim web app:
     ```bash
     cd MITM-Lab
+    sudo chmod +x start.sh
     ./start.sh
     ```
 - On the **user node (Alice)**:
