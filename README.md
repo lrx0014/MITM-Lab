@@ -15,7 +15,7 @@ The exercise uses a three-node layout:
 
 Download the Virtual Machine images for this lab: **[Download Here](https://drive.google.com/drive/folders/1qfoB2r840WXnAG2EsF0gyGfLKoWyF8mM?usp=sharing)**
 
-You can import them into your VMWare or VirtualBox
+You can import them into your VMWare or VirtualBox (vmware is recommended because these images are exported from vmware workstation)
 
 > **⚠️ when importing each image, please set their virtual network adapters to **Host-Only** mode to isolate them from the public network.
 
