@@ -74,15 +74,14 @@ EOF
 }
 
 start_app() {
-    cd "$APP_DIR"
-
     if [ ! -d ".venv" ]; then
         echo "[+] Creating Python virtual environment"
         python3 -m venv .venv
     fi
 
-    # shellcheck source=/dev/null
     source .venv/bin/activate
+    
+    cd "$APP_DIR"
 
     echo "[+] Starting victim application on port 8000"
     exec python app.py
