@@ -41,7 +41,7 @@ sudo iptables -t nat -A PREROUTING -i eth0 -p tcp -d <server_ip> --dport 80  -j 
 sudo iptables -t nat -A PREROUTING -i eth0 -p tcp -d <server_ip> --dport 443 -j REDIRECT --to-port 8080
 
 # confirm
-sudo iptables -t nat -L PREROUTING -n -v --line-numbers | grep 192.168.99.2
+sudo iptables -t nat -L PREROUTING -n -v --line-numbers | grep <server_ip>
 
 sudo mitmproxy --mode transparent --listen-port 8080 --showhost
 
