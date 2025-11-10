@@ -20,7 +20,14 @@ You can import them into your VMWare or VirtualBox (vmware is recommended becaus
 > **⚠️ WARN** when importing each image, please set their virtual network adapters to **Host-Only** mode to isolate them from the public network.
 
 and then, you can power up these VMs to start the lab environment.
-
+- For each node
+  - Run `ip addr` to verify IPv4 assignment.
+    If no IPv4 address is listed or the interface is DOWN, use the command below to re-enable it.
+    ```bash
+    sudo ip link set <interface_name> up
+    sudo dhcpcd <interface_name>
+    ```
+    `<interface_name>` could be something like `enp0s17`, `en33`, or similar. This issue sometimes occurs when using VirtualBox.
 - On the **server node (Bob)**:
   - Launch the victim web app:
     ```bash
