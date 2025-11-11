@@ -38,8 +38,12 @@ configure_nginx() {
         exit 1
     fi
 
-    echo "[+] Deploying Nginx proxy configuration"
-    $SUDO cp "$REPO_NGINX_CONF" "$site_available"
+    if [ -f "$site_available" ]; then
+        echo "[i] Nginx site configuration already exists at $site_available; skipping copy"
+    else
+        echo "[+] Deploying Nginx proxy configuration"
+        $SUDO cp "$REPO_NGINX_CONF" "$site_available"
+    fi
 
     if [ ! -e "$site_enabled" ]; then
         $SUDO ln -s "$site_available" "$site_enabled"
