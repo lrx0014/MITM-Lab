@@ -84,7 +84,7 @@ start_app() {
     fi
 
     source .venv/bin/activate
-    
+
     cd "$APP_DIR"
 
     echo "[+] Starting victim application on port 8000"
@@ -99,14 +99,6 @@ main() {
     fi
 
     configure_nginx
-
-    local ip
-    if ! ip="$(detect_server_ip)"; then
-        echo "[!] Unable to detect server IP address automatically. Set SERVER_IP and retry." >&2
-        exit 1
-    fi
-
-    configure_dnsmasq "$ip"
 
     start_app
 }
