@@ -29,36 +29,22 @@ and then, you can power up these VMs to start the lab environment.
     ```
     `<interface_name>` could be something like `enp0s17`, `en33`, or similar. This issue sometimes occurs when using VirtualBox.
 - On the **server node (Bob)**:
-  - Launch the victim web app:
+  - the simulated bank app is running in docker:
     ```bash
-    cd MITM-Lab
-    sudo chmod +x start.sh
-    ./start.sh
+    sudo docker ps
+    ```
+  - and a reverse proxy with nginx:
+    ```bash
+    sudo vim /etc/nginx/sites-available/victim
     ```
 - On the **user node (Alice)**:
-  - Set DNS to `<server_ip>` (NetworkManager → IPv4 → DNS).
+  - Set /etc/hosts to map `<server_ip>` → victim.com.
   - Browse to `http://victim.com/` to hit the simulated site.
 
 - Attacker's guide (for kali linux):
-  - [Task-1: MITM attack on HTTP](./attack_guide/MITM_HTTP.md)
+  - [Tasks: MITM attacks](./attack_guide/MITM.md)
 
 ## Simulated Victim Web App
 
 This repository includes a simple Python + HTML victim site that accepts form submissions. It is meant to act as the target page during Man-in-the-Middle scenarios.
 
-
-### Reverse proxy with Nginx
-- **Provision server services with `start.sh`** (run on the server node)
-
-  ```bash
-  chmod +x start.sh
-  ./start.sh
-  ```
-
-  The script configures Nginx and dnsmasq, copies the lab proxy configuration, and points `victim.com` to the server's detected IP address. Set `SERVER_IP=<server_ip>` if auto-detection picks the wrong interface.
-
-  Ensure the Flask app is running on port `8000`, and update your hosts file (or DNS) so `victim.com` resolves to `<server_ip>`, the address of the Server node.
-
-### Local DNS with dnsmasq
-
-To make the experience more realistic, we set up a lightweight DNS server on the server node so the simulated web app can be accessed by domain instead of using its IP address directly. Point victim system (Alice) to use `<server_ip>` as its DNS server. On Ubuntu Desktop, edit the connection in NetworkManager (IPv4 tab → set DNS to `<server_ip>`).
