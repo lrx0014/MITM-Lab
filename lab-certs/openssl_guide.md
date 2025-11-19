@@ -39,7 +39,7 @@ openssl req -in server.csr -noout -text | grep -A2 "Subject Alternative Name"
 # modify file v3ext.cnf, and replace <server_ip> with your actual server's ip
 subjectAltName = @alt_names
 [alt_names]
-DNS.1 = vimctim.com
+DNS.1 = victim.com
 IP.1  = <server_ip>
 
 # sign
